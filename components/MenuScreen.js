@@ -1,50 +1,85 @@
-import {View, Text, Button, FlatList, Image, TouchableOpacity} from 'react-native'
+import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import styles from './styles';
 
 const DATA = [
    {
-    path: 'C:/Users/buslo/OneDrive/Documents/icon/placeholder-image.webp',
+    id: '1',
+    path: require('../assets/images/people.png'),
+    title: 'Headcounts',
+    screen: "Headcounts",
    },
 
    {
-    
+    id: '2',
+    path: require('../assets/images/QRCode.png'),
+    title: 'QR Codes'
    },
 
    {
-    
-   },
-    
-   {
-    
-   },
-   
-   {
-    
+    id: '3',
+    path: require('../assets/images/Building.png'),
+    title: 'Property Rounds'
    },
 
    {
-    
+    id: '4',
+    path: require('../assets/images/Clock.png'),
+    title: 'Hourly Assignments'
+   },
+   {
+    id: '5',
+    path: require('../assets/images/Printer.png'),
+    title: 'Printers'
    },
 
    {
-    
-   },
-   
-   {
-      
+    id: '6',
+    path: require('../assets/images/Key.png'),
+    title: 'Keys'
    },
 
    {
-     
+    id: '7',
+    path: require('../assets/images/Tickets.png'),
+    title: 'Maintenance Tickets'
+   },
+
+   {
+    id: '8',
+    path: require('../assets/images/Restroom.png'),
+    title: 'Restrooms'
+   },
+
+   {
+    id: '10',
+    path: require('../assets/images/Check.png'),
+    title: 'Projects'
+   },
+
+   {
+    id: '9',
+    path: require('../assets/images/LogOut.png'),
+    title: 'Log Out'
    },
 
 ];
   
-const Item = ({title, path}) => (
-    <TouchableOpacity style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-      <Image source = {{uri: path}} style = {{flex: 1}}/>
+const Item = ({title, path, screen,}) => (
+    <TouchableOpacity style={styles.item} onPress={() => navigation.navigate(screen)}>
+      <Image 
+      source = {{uri: path}} 
+      style = {styles.image} 
+      onError={(error) => console.log('Image loading error:', error)}
+      />
+      <Text 
+      
+      style={{color: '#fff', fontSize: 20,}}
+      adjustsFontSizeToFit={true}
+      allowFontScaling={true}
+      >
+      {title}
+      </Text>
     </TouchableOpacity>
 );
 
@@ -52,7 +87,6 @@ function MenuScreen({ navigation }) {
     return (
       
   <SafeAreaProvider>
-    
     <View style = {{flex: 1, backgroundColor: '#041e42',}}>
       <Text style ={{color: '#fff', fontSize: 25, paddingHorizontal: '33.333%', paddingVertical: '1.5%'}}>
       KC Building Operations
@@ -64,7 +98,8 @@ function MenuScreen({ navigation }) {
       <FlatList
         style = {{flex: 1, paddingHorizontal: '20%',}}
         data={DATA}
-        renderItem={({item}) => <Item title={item.title} path={item.path}/>}
+        renderItem={({item}) => <Item title={item.title} path={item.path} screen={item.screen}/>}
+        keyExtractor={item => item.id}
         numColumns={3}
       />
 
@@ -78,6 +113,6 @@ function MenuScreen({ navigation }) {
 
   </SafeAreaProvider>
   );
-  }
+}
 
   export default MenuScreen

@@ -36,10 +36,16 @@ const styles = StyleSheet.create({
   
     item: {
       backgroundColor: '#333940',
-      padding: 80,
-      includeFontPadding: false,
+      padding: 10,
       marginVertical: 5,
       marginHorizontal: 5,
+      maxWidth: 160,
+      alignItems: 'center'
+    },
+
+    image: {
+      width:140,
+      height: 140,
     },
   
     title: {
