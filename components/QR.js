@@ -1,13 +1,13 @@
 import {View, Text} from 'react-native';
 import styles from './styles';
 
-function Headcounts({ navigation }){
+function QR({ navigation }){
     return(
         <View style = {styles.container}>
-            <Text style = {{color: '#fff'}}> Hello Headcounts</Text>
+            <Text style = {{color: '#fff'}}> Hello QR</Text>
 
         </View>
     );
 }
 
-export default Headcounts
+export default QR

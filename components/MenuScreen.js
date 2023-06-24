@@ -7,13 +7,14 @@ const DATA = [
     id: '1',
     path: require('../assets/images/people.png'),
     title: 'Headcounts',
-    screen: "Headcounts",
+    screen: 'Headcounts',
    },
 
    {
     id: '2',
     path: require('../assets/images/QRCode.png'),
-    title: 'QR Codes'
+    title: 'QR Codes',
+    screen: 'QR',
    },
 
    {
@@ -60,26 +61,29 @@ const DATA = [
    {
     id: '9',
     path: require('../assets/images/LogOut.png'),
-    title: 'Log Out'
+    title: 'Log Out',
+    screen: 'Login'
    },
 
 ];
   
-const Item = ({title, path, screen,}) => (
+const Item = ({title, path, screen, navigation}) => (
     <TouchableOpacity style={styles.item} onPress={() => navigation.navigate(screen)}>
+
       <Image 
       source = {{uri: path}} 
       style = {styles.image} 
       onError={(error) => console.log('Image loading error:', error)}
       />
-      <Text 
       
+      <Text 
       style={{color: '#fff', fontSize: 20,}}
       adjustsFontSizeToFit={true}
       allowFontScaling={true}
       >
       {title}
       </Text>
+
     </TouchableOpacity>
 );
 
@@ -98,7 +102,7 @@ function MenuScreen({ navigation }) {
       <FlatList
         style = {{flex: 1, paddingHorizontal: '20%',}}
         data={DATA}
-        renderItem={({item}) => <Item title={item.title} path={item.path} screen={item.screen}/>}
+        renderItem={({item}) => <Item title={item.title} path={item.path} screen={item.screen} navigation ={navigation}/>}
         keyExtractor={item => item.id}
         numColumns={3}
       />
